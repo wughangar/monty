@@ -3,12 +3,11 @@
 /**
  * push - function for monty push
  * @stack: oduble pointer for stack
- * @value: unsigned int
  *
  * Return: void
  */
 
-void push(stack_t **stack, unsigned int value)
+void push(stack_t **stack)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
@@ -18,7 +17,7 @@ void push(stack_t **stack, unsigned int value)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = value;
+	new_node->n = 0;
 	new_node->prev = NULL;
 	new_node->next = *stack;
 
