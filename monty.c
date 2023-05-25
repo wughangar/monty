@@ -2,8 +2,8 @@
 
 /**
  * push - function for monty push
- * @stack; oduble pointer for stack
- * line_number: unsigned int
+ * @stack: oduble pointer for stack
+ * @value: unsigned int
  *
  * Return: void
  */
