@@ -1,37 +1,47 @@
 #include "monty.h"
 
-#define STACK_SIZE 1024
-
 /**
- * push - function for push
- * @stack: stack
- * @value: int
+ * push - function for monty push
+ * @stack; oduble pointer for stack
+ * line_number: unsigned int
  *
  * Return: void
  */
-void push(Stack *stack, int value)
+
+void push(stack_t **stack, unsigned int value)
 {
-	if (stack->top == STACK_SIZE - 1)
+	stack_t *new_node = malloc(sizeof(stack_t));
+
+	if (new_node == NULL)
 	{
-		fprintf(stderr, "Error: Satck overflow\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	stack->data[++stack->top] = value;
+
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
+
+	*stack = new_node;
 }
 
 /**
- * pall - function for pall
- * @stack: stack
+ * pall - function monty pall
+ * @stack: double pointer for stack
  *
  * Return: void
  */
 
-void pall(Stack *stack)
+void pall(stack_t **stack)
 {
-	int i;
+	stack_t *current = *stack;
 
-	for (i = stack->top; i >= 0; i--)
+	while (current != NULL)
 	{
-		pintf("%d\n", stack->data[i]);
+		printf("%d\n", current->n);
+		current = current->next;
 	}
 }
