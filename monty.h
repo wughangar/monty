@@ -42,8 +42,8 @@ typedef struct instruction_s
 
 void push(stack_t **stack);
 void pall(stack_t **stack);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int num);
+void pop(stack_t **stack, unsigned int num);
+void swap(stack_t **stack, unsigned int num);
 
 #endif /* MONTY_H */
