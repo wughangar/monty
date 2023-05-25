@@ -38,7 +38,10 @@ void pall(stack_t **stack)
 {
 	stack_t *current = *stack;
 
-	while (current != NULL)
+	if (current == NULL)
+		return;
+
+	while (current)
 	{
 		printf("%d\n", current->n);
 		current = current->next;
