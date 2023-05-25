@@ -50,11 +50,11 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-			push(&stack);
+			push(&stack, atoi(arg));
 		}
 		else if (strcmp(opcode, "pint") == 0)
 		{
-			pint(&stack, line_number);
+			pint(stack, line_number);
 		}
 		else if (strcmp(opcode, "pop") == 0)
 		{
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(opcode, "push") == 0)
 		{
-			push(&stack);
+			push(stack);
 		}
 		else if (strcmp(opcode, "add") == 0)
 		{
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(opcode, "nop") == 0)
 		{
-			nop(&stack, line_number);
+			nop(stack, line_number);
 		}
 		else
 		{
