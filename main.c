@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-			push(&stack, atoi(arg));
+			push(&stack);
 		}
 		else if (strcmp(opcode, "pint") == 0)
 		{
