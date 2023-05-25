@@ -74,11 +74,11 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(opcode, "add") == 0)
 		{
-			add(&stack);
+			add(&stack, line_number);
 		}
 		else if (strcmp(opcode, "nop") == 0)
 		{
-			nop(&stack);
+			nop(&stack, line_number);
 		}
 		else
 		{
