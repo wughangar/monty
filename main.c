@@ -18,47 +18,47 @@ void pinst(const char* instruction, int line_number, stack_t **stack)
 {
 	if (strcmp(instruction, "push") == 0)
 	{
-		push(&stack);
+		push(stack, line_number);
 	}
 	else if (strcmp(instruction, "pall") == 0)
 	{
-		pall(&stack);
+		pall(stack, line_number);
 	}
 	else if (strcmp(instruction, "pop") == 0)
 	{
-		pop(&stack);
+		pop(stack, line_number);
 	}
 	else if (strcmp(instruction, "add") == 0)
 	{
-		add(&stack);
+		add(stack, line_number);
 	}
 	else if (strcmp(instruction, "pint") == 0)
 	{
-		pint(&stack);
+		pint(stack, line_number);
 	}
 	else if (strcmp(instruction, "swap") == 0)
 	{
-		swap(&stack);
+		swap(stack, line_number);
 	}
 	else if (strcmp(instruction, "nop") == 0)
 	{
-		nop(&stack);
+		nop(stack, line_number);
 	}
 	else if (strcmp(instruction, "sub") == 0)
 	{
-		sub(&stack);
+		sub(stack, line_number);
 	}
 	else if (strcmp(instruction, "div") == 0)
 	{
-		division(&stack);
+		division(stack, line_number);
 	}
 	else if (strcmp(instruction, "mul") == 0)
 	{
-		mul(&stack);
+		mul(stack, line_number);
 	}
 	else if (strcmp(instruction, "mod") == 0)
 	{
-		mod(&stack);
+		mod(stack, line_number);
 	}
 
 	else
@@ -79,9 +79,9 @@ void pinst(const char* instruction, int line_number, stack_t **stack)
 
 int main(int argc, char *argv[])
 {
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	FILE *file;
-	char *line;
+	char *line = NULL;
 	size_t len = 0;
 	stack_t *stack = NULL;
 
@@ -94,17 +94,17 @@ int main(int argc, char *argv[])
 	file = fopen(argv[1], "r");
 	if (file == NULL)
 	{
-		printf("Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
 	while (getline(&line, &len, file) != -1)
 	{
-		char *instruction = strtok(line, "\t\n");
+		char *arg = strtok(line, "\t\n");
 
-		if (instruction != NULL)
+		if (arg != NULL)
 		{
-			pinst(instruction, line_number, &stack);
+			pinst(arg, line_number, &stack);
 		}
 		line_number++;
 	}
