@@ -18,47 +18,47 @@ void pinst(const char* instruction, int line_number, stack_t **stack)
 {
 	if (strcmp(instruction, "push") == 0)
 	{
-		push();
+		push(stack, line_number);
 	}
 	else if (strcmp(instruction, "pall") == 0)
 	{
-		pall();
+		pall(stack, line_number);
 	}
 	else if (strcmp(instruction, "pop") == 0)
 	{
-		pop();
+		pop(stack, line_number);
 	}
 	else if (strcmp(instruction, "add") == 0)
 	{
-		add();
+		add(stack, line_number);
 	}
 	else if (strcmp(instruction, "pint") == 0)
 	{
-		pint();
+		pint(stack, line_number);
 	}
 	else if (strcmp(instruction, "swap") == 0)
 	{
-		swap();
+		swap(stack, line_number);
 	}
 	else if (strcmp(instruction, "nop") == 0)
 	{
-		nop();
+		nop(stack, line_number);
 	}
 	else if (strcmp(instruction, "sub") == 0)
 	{
-		sub();
+		sub(stack, line_number);
 	}
 	else if (strcmp(instruction, "div") == 0)
 	{
-		division();
+		division(stack, line_number);
 	}
 	else if (strcmp(instruction, "mul") == 0)
 	{
-		mul();
+		mul(stack, line_number);
 	}
 	else if (strcmp(instruction, "mod") == 0)
 	{
-		mod();
+		mod(stack, line_number);
 	}
 
 	else
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
 		if (instruction != NULL)
 		{
-			pinst(instruction, line_number);
+			pinst(instruction, line_number, &stack);
 		}
 		line_number++;
 	}
