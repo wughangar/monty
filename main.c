@@ -22,7 +22,7 @@ instruction_t vinstruction[] = {
 	{"swap", &swap},
 	{"nop", &nop},
 	{"sub", &sub},
-	{"div", &div},
+	{"div", &division},
 	{"mul", &mul},
 	{"mod", &mod},
 };
