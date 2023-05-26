@@ -4,6 +4,28 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include <ctype.h>
+
+/**
+ * is_integer - function that checks for an in
+ * @str: string to be checked
+ *
+ * Return: int
+ */
+
+int is_integer(const char *str)
+{
+	if (str == NULL || *str == '\0')
+		return (0);
+
+	while(*str)
+	{
+		if (!isdigit(*str) && *str != '-' && *str != '+')
+			return (0);
+		str++;
+	}
+	return (1);
+}
 
 /**
  * main - monty code interpretor
@@ -49,22 +71,14 @@ int main(int argc, char *argv[])
 		{
 			char *arg = strtok(NULL, " \t\n");
 
-			if (arg == NULL)
+			if (arg == NULL || is_integer(arg) == 0)
 			{
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
 			value = atoi(arg);
-			if (value == 0 && strcmp(arg, "0") != 0)
-			{
-				fprintf(stderr, "L%u: usage: push integer\n", line_number);
-				exit(EXIT_FAILURE);
-			}
-			push(&stack, line_number);
-		}
-		else if (strcmp(opcode, "push") == 0)
-		{
-			push(&stack, line_number);
+			push(&stack, value);
+			continue;
 		}
 		else if (strcmp(opcode, "pall") == 0)
 		{
