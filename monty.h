@@ -39,7 +39,6 @@ typedef struct instruction_s
 } instruction_t;
 
 int is_numeric(const char* str);
-void pinst(const char* instruction, int line_number, stack_t **stack);
 int main(int argc, char *argv[]);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
