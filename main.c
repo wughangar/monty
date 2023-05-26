@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 	unsigned int line_number = 0;
 	FILE *file;
 	char *line = NULL;
-	size_t len = 0;
 	stack_t *stack = NULL;
 	char *opcode;
 	int value;
+	size_t *len = 0;
 
 	if (argc != 2)
 	{
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(line, sizeof(line), file))
+	while (getline(&line, len, file) != -1)
 	{
 		line_number++;
 		opcode = strtok(line, " \t\n");
@@ -47,7 +47,8 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(opcode, "push") == 0)
 		{
-			arg = strtok(NULL, " \t\n");
+			char *arg = strtok(NULL, " \t\n");
+
 			if (arg == NULL)
 			{
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-			push(&stack, value, line_number);
+			push(&stack, line_number);
 		}
 		else if (strcmp(opcode, "push") == 0)
 		{
@@ -77,37 +78,37 @@ int main(int argc, char *argv[])
 		{
 			add(&stack, line_number);
 		}
-		else if (strcmp(instruction, "pint") == 0)
+		else if (strcmp(opcode, "pint") == 0)
 		{
-			pint(stack, line_number);
+			pint(&stack, line_number);
 		}
-		else if (strcmp(instruction, "swap") == 0)
+		else if (strcmp(opcode, "swap") == 0)
 		{
-			swap(stack, line_number);
+			swap(&stack, line_number);
 		}
-		else if (strcmp(instruction, "nop") == 0)
+		else if (strcmp(opcode, "nop") == 0)
 		{
-			nop(stack, line_number);
+			nop(&stack, line_number);
 		}
-		else if (strcmp(instruction, "sub") == 0)
+		else if (strcmp(opcode, "sub") == 0)
 		{
-			sub(stack, line_number);
+			sub(&stack, line_number);
 		}
-		else if (strcmp(instruction, "div") == 0)
+		else if (strcmp(opcode, "div") == 0)
 		{
-			division(stack, line_number);
+			division(&stack, line_number);
 		}
-		else if (strcmp(instruction, "mul") == 0)
+		else if (strcmp(opcode, "mul") == 0)
 		{
-			mul(stack, line_number);
+			mul(&stack, line_number);
 		}
-		else if (strcmp(instruction, "mod") == 0)
+		else if (strcmp(opcode, "mod") == 0)
 		{
-			mod(stack, line_number);
+			mod(&stack, line_number);
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n", line_number, instruction);
+			printf("L%d: unknown instruction %s\n", line_number, opcode);
 			exit(EXIT_FAILURE);
 		}
 	}
