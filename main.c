@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 	stack_t *stack = NULL;
 	char *opcode;
 	int value;
-	size_t *len = 0;
+	size_t len = 0;
 
 	if (argc != 2)
 	{
