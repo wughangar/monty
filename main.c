@@ -9,43 +9,65 @@
  * pinst - fuction to process instructions
  * @instruction: instruction to be processed
  * @line_number: line number
+ * @stack: pinter for stack
  *
  * Return: void
  */
 
-instruction_t vinstruction[] = {
-	{"push", &push},
-	{"pall", &pall},
-	{"pop", &pop},
-	{"add", &add},
-	{"pint", &pint},
-	{"swap", &swap},
-	{"nop", &nop},
-	{"sub", &sub},
-	{"div", &division},
-	{"mul", &mul},
-	{"mod", &mod},
-};
 void pinst(const char* instruction, int line_number, stack_t **stack)
 {
-	int num_instructions = sizeof(vinstruction) / sizeof(vinstruction[0]);
-	int i;
-
-	for (i = 0; i < num_instructions; i++)
+	if (strcmp(instruction, "push") == 0)
 	{
-		if (strcmp(instruction, vinstruction[i].opcode) == 0)
-		{
-			vinstruction[i].f(stack, line_number);
-			return;
-		}
+		push(stack, line_number);
+	}
+	else if (strcmp(instruction, "pall") == 0)
+	{
+		pall(stack, line_number);
+	}
+	else if (strcmp(instruction, "pop") == 0)
+	{
+		pop(stack, line_number);
+	}
+	else if (strcmp(instruction, "add") == 0)
+	{
+		add(stack, line_number);
+	}
+	else if (strcmp(instruction, "pint") == 0)
+	{
+		pint(stack, line_number);
+	}
+	else if (strcmp(instruction, "swap") == 0)
+	{
+		swap(stack, line_number);
+	}
+	else if (strcmp(instruction, "nop") == 0)
+	{
+		nop(stack, line_number);
+	}
+	else if (strcmp(instruction, "sub") == 0)
+	{
+		sub(stack, line_number);
+	}
+	else if (strcmp(instruction, "div") == 0)
+	{
+		division(stack, line_number);
+	}
+	else if (strcmp(instruction, "mul") == 0)
+	{
+		mul(stack, line_number);
+	}
+	else if (strcmp(instruction, "mod") == 0)
+	{
+		mod(stack, line_number);
 	}
 
-	printf("L%d: unknown instruction %s\n", line_number, instruction);
-	exit(EXIT_FAILURE);
+	else
+	{
+		printf("L%d: unknown instruction %s\n", line_number, instruction);
+		exit(EXIT_FAILURE);
+	}
 }
 			
-
-
 
 /**
  * main - monty code interpretor
