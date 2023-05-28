@@ -1,6 +1,6 @@
+#include <stdio.h>
 #include "monty.h"
 #include <ctype.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -15,6 +15,15 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
+	char line_str[20];
+
+	sprintf(line_str, "%u", line_number);
+
+	if ( !is_numeric(line_str))
+	{
+		printf("Error: L%u: ussage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
