@@ -5,9 +5,9 @@
 #include <string.h>
 
 /**
- * push - function for push 
+ * push - function for push
  * @stack: double pointer  to stack
- * @line_number: int for line mumber 
+ * @line_number: int for line mumber
  *
  * Return: void
  */
@@ -19,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	sprintf(line_str, "%u", line_number);
 
-	if ( !is_numeric(line_str))
+	if (!is_numeric(line_str))
 	{
 		printf("Error: L%u: ussage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
