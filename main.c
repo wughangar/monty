@@ -5,7 +5,6 @@
 #include <stddef.h>
 #include <string.h>
 #include <ctype.h>
-#include <linux/limits.h>
 
 /**
  * is_numeric - function that checks for an in
