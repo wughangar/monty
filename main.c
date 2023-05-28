@@ -5,24 +5,35 @@
 #include <stddef.h>
 #include <string.h>
 #include <ctype.h>
+#include <linux/limits.h>
 
 /**
- * is_integer - function that checks for an in
+ * is_numeric - function that checks for an in
  * @str: string to be checked
  *
  * Return: int
  */
 
-int is_integer(const char *str)
+int is_numeric(const char *str)
 {
-	if (str == NULL || *str == '\0')
-		return (0);
-
-	while(*str)
+	if (*str == '-' || *str == '+')
 	{
-		if (!isdigit(*str) && *str != '-' && *str != '+')
-			return (0);
 		str++;
+	}
+
+	if (*str == '\0')
+	{
+		return (0);
+	}
+
+	while (*str != '\0')
+	{
+		if (*str < '0' || *str > '9')
+		{
+
+			return (0);
+		}
+	str++;
 	}
 	return (1);
 }
@@ -71,7 +82,7 @@ int main(int argc, char *argv[])
 		{
 			char *arg = strtok(NULL, " \t\n");
 
-			if (arg == NULL || is_integer(arg) == 0)
+			if (arg == NULL || is_numeric(arg) == 0)
 			{
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
