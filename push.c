@@ -21,14 +21,14 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!is_numeric(line_str))
 	{
-		fprintf("Error: L%u: ussage: push integer\n", line_number);
+		fprintf(stderr, "Error: L%u: ussage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
-		fprintf("Errror: malloc failed\n");
+		fprintf(stderr, "Errror: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
